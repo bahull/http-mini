@@ -30,33 +30,83 @@ class App extends Component {
   }
 
   getVehicles() {
+    axios.get("https://joes-autos.herokuapp.com/api/vehicles")
+    .then( res => {
+      if (res.status === 200) {
+        ToastStore.success('Success!', 3000)
+      } else {
+        ToastStore.error('Uh, oh! We got code issues!', 3000)
+      }
+    })
     // axios (GET)
     // setState with response -> vehiclesToDisplay
   }
 
   getPotentialBuyers() {
+    axios.get("https://joes-autos.herokuapp.com/api/buyers")
+    .then( res => {
+      if (res.status === 200) {
+        ToastStore.success('Success!', 3000)
+      } else {
+        ToastStore.error('Uh, oh! We got code issues!', 3000)
+      }
+    })
+
     // axios (GET)
     // setState with response -> buyersToDisplay
   }
 
   sellCar(id) {
+    axios.delete("https://joes-autos.herokuapp.com/api/vehicles/:id")
+    .then( res => {
+      if (res.status === 200) {
+        ToastStore.success('Success!', 3000)
+      } else {
+        ToastStore.error('Uh, oh! We got code issues!', 3000)
+      }
+    })
     // axios (DELETE)
     // setState with response -> vehiclesToDisplay
   }
 
   filterByMake() {
     let make = this.refs.selectedMake.value
+    axios.get("https://joes-autos.herokuapp.com/api/vehicles" + "?make" + make)
+    .then( res => {
+      if (res.status === 200) {
+        ToastStore.success('Success!', 3000)
+      } else {
+        ToastStore.error('Uh, oh! We got code issues!', 3000)
+      }
+    })
     // axios (GET)
     // setState with response -> vehiclesToDisplay
   }
 
   filterByColor() {
     let color = this.refs.selectedColor.value;
+    axios.get("https://joes-autos.herokuapp.com/api/vehicles" + "?color" + color)
+    .then( res => {
+      if (res.status === 200) {
+        ToastStore.success('Success!', 3000)
+      } else {
+        ToastStore.error('Uh, oh! We got code issues!', 3000)
+      }
+    })
     // axios (GET)
     // setState with response -> vehiclesToDisplay
   }
 
-  updatePrice(priceChange) {
+  updatePrice(priceChange, id) {
+
+    axios.put("https://joes-autos.herokuapp.com/api/vehicles/:id/" + priceChange)
+    .then( res => {
+      if (res.status === 200) {
+        ToastStore.success('Success!', 3000)
+      } else {
+        ToastStore.error('Uh, oh! We got code issues!', 3000)
+      }
+    })
     // axios (PUT)
     // setState with response -> vehiclesToDisplay
   }
@@ -69,6 +119,14 @@ class App extends Component {
     year: this.refs.year.value,
     price: this.refs.price.value
   }  
+  axios.post("https://joes-autos.herokuapp.com/api/buyers")
+  .then( res => {
+    if (res.status === 200) {
+      ToastStore.success('Success!', 3000)
+    } else {
+      ToastStore.error('Uh, oh! We got code issues!', 3000)
+    }
+  })
   // axios (POST)
   // setState with response -> vehiclesToDisplay
 }
